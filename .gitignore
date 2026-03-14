@@ -20,6 +20,9 @@ tmp/
 diagnostic-*.pdf
 test-*.pdf
 
+# Large font files (loaded from external URL at runtime)
+public/fonts/*.ttf
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

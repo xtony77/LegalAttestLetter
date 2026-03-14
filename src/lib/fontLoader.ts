@@ -1,5 +1,5 @@
 const FONT_CACHE_NAME = 'legal-attest-letter-fonts-v1';
-const TW_KAI_FONT_PATH = '/fonts/TW-Kai.ttf';
+const TW_KAI_FONT_PATH = 'https://raw.githubusercontent.com/xtony77/fontCollection/master/TW-Kai.ttf';
 
 export class FontLoadError extends Error {
   constructor(message = '字型載入失敗，請重新整理頁面後再試') {
