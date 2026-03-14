@@ -1,6 +1,13 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { PersonSection } from './components/PersonSection';
 import type { PersonData, PersonSectionErrors } from './components/PersonSection';
+import {
+  FontLoadError,
+} from './lib/fontLoader';
+import {
+  generateAndDownloadLegalAttestLetterPdf,
+  PdfGenerationError,
+} from './lib/pdfGenerator';
 
 const ScaleIcon = () => (
   <svg
@@ -44,6 +51,8 @@ function App() {
   const [receiverErrors, setReceiverErrors] = useState<PersonSectionErrors>({});
   const [copyReceiverErrors, setCopyReceiverErrors] = useState<PersonSectionErrors>({});
   const [contentError, setContentError] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationError, setGenerationError] = useState('');
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -110,10 +119,31 @@ function App() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) {
-      alert('驗證通過！(PDF 產生功能開發中)');
+
+    if (!validate()) {
+      return;
+    }
+
+    setGenerationError('');
+    setIsGenerating(true);
+
+    try {
+      await generateAndDownloadLegalAttestLetterPdf({
+        senders,
+        receivers,
+        copyReceivers,
+        content,
+      });
+    } catch (error) {
+      if (error instanceof PdfGenerationError || error instanceof FontLoadError) {
+        setGenerationError(error.message);
+      } else {
+        setGenerationError('PDF 產生失敗，請稍後再試');
+      }
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -168,11 +198,13 @@ function App() {
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full py-4 bg-primary text-white font-bold rounded-lg shadow-md hover:bg-primary/90 hover:shadow-lg active:scale-[0.98] transition-all relative overflow-hidden group"
+              disabled={isGenerating}
+              className="w-full py-4 bg-primary text-white font-bold rounded-lg shadow-md hover:bg-primary/90 hover:shadow-lg active:scale-[0.98] transition-all relative overflow-hidden group disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-primary disabled:hover:shadow-md disabled:active:scale-100"
             >
               <div className="absolute inset-0 bg-accent/10 translate-y-full group-hover:translate-y-0 transition-transform" />
-              <span className="relative">產生存證信函 PDF</span>
+              <span className="relative">{isGenerating ? '產生中...' : '產生存證信函 PDF'}</span>
             </button>
+            {generationError && <p className="mt-3 text-sm text-error">{generationError}</p>}
           </div>
         </form>
 

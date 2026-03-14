@@ -42,6 +42,7 @@ export const PersonFieldGroup: React.FC<PersonFieldGroupProps> = ({
     <div className="relative p-4 border border-gray-200 rounded-lg bg-surface shadow-sm space-y-4">
       {showDelete && (
         <button
+          type="button"
           onClick={onDelete}
           className="absolute -top-2 -right-2 p-1.5 bg-white text-error border border-gray-200 rounded-full hover:bg-red-50 transition-colors shadow-sm"
           title="刪除"

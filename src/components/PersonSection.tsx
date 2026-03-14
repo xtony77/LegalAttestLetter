@@ -66,6 +66,7 @@ export const PersonSection: React.FC<PersonSectionProps> = ({
       </div>
 
       <button
+        type="button"
         onClick={handleAdd}
         className="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-text-muted hover:border-primary/40 hover:text-primary transition-all flex justify-center items-center gap-2 group"
       >

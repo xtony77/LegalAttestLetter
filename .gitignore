@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Temp directories (dev verification artifacts)
+.tmp/
+tmp/
+
+# Diagnostic/test PDFs generated during development
+diagnostic-*.pdf
+test-*.pdf
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
