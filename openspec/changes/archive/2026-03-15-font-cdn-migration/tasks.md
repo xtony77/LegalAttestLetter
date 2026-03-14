@@ -10,6 +10,6 @@
 
 ## 3. Git history 清理
 
-- [ ] 3.1 使用 `git filter-repo --path public/fonts/TW-Kai.ttf --invert-paths` 從歷史移除大檔案
-- [ ] 3.2 驗證 `.git/` 體積已縮小
-- [ ] 3.3 `git push --force` 同步 remote
+- [x] 3.1 使用 `git filter-repo --path public/fonts/TW-Kai.ttf --invert-paths` 從歷史移除大檔案
+- [x] 3.2 驗證 `.git/` 體積已縮小
+- [x] 3.3 `git push --force` 同步 remote
