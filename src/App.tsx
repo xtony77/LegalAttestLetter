@@ -35,9 +35,51 @@ const Header = () => (
   </header>
 );
 
+const RocketIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+    <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 3 0 3 0" />
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-3 0-3" />
+  </svg>
+);
+
+const GitHubIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 16 16"
+    fill="#24292f"
+    aria-hidden="true"
+  >
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+  </svg>
+);
+
 const Footer = () => (
   <footer className="mt-8 text-center text-sm text-text-muted">
-    <p>您的資料不會離開瀏覽器</p>
+    <p className="inline-flex items-center gap-1 flex-wrap justify-center">
+      <RocketIcon className="w-4 h-4" />
+      <span>您的資料不會離開瀏覽器</span>
+      <span className="mx-1">·</span>
+      <a
+        href="https://github.com/xtony77/LegalAttestLetter/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1 hover:text-primary transition-colors"
+      >
+        <GitHubIcon className="w-4 h-4" />
+        問題回報
+      </a>
+    </p>
   </footer>
 );
 
